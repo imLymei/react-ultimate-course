@@ -169,3 +169,9 @@ const updatedBook = {
 };
 
 console.log(updatedBook);
+
+const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it's ${pages} pages long published in ${
+	publicationDate.split('-')[0]
+}`;
+
+console.log(summary);
