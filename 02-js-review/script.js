@@ -134,16 +134,38 @@ function getBook(id) {
 
 //-----
 
-const book = getBook(2);
+const book = getBook(1);
+
+// Desestruturando um objeto
+const { title, author, pages, publicationDate, genres } = book;
 
 // const title = book.title
 // const author = book.author
 
-const { title, author, pages, publicationDate, genres } = book;
+console.log(title);
+console.log(author);
+
+// Desestruturando uma array e Rest operator
+const [primaryGenre, secondaryGenre, ...othersGenres] = genres;
 
 // const primaryGenre = genres[0];
 // const secondaryGenre = genres[1];
 
-const [primaryGenre, secondaryGenre] = genres;
+console.log(primaryGenre);
+console.log(secondaryGenre);
+console.log(othersGenres);
 
-console.log(title, author, primaryGenre, secondaryGenre);
+// Desestruturando uma array com Spread operator
+const newGenres = [...genres, 'epic fantasy'];
+
+console.log(newGenres);
+
+const updatedBook = {
+	...book,
+	// Adicionando uma nova propriedade
+	moviePublicationDate: '2001-12-19',
+	// Modificando uma propriedade existente
+	pages: 1210,
+};
+
+console.log(updatedBook);
