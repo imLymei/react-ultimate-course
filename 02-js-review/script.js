@@ -175,9 +175,12 @@ const pagesRange = pages > 1000 ? 'over a thousand' : 'less than a thousand';
 
 console.log(pagesRange);
 
+//Arrow function
+const getYear = (date) => date.split('-')[0];
+
 //String literal
-const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it was published in ${
-	publicationDate.split('-')[0]
-}. The book has ${pagesRange} pages and ${hasMovieAdaptation ? '' : 'do not'} have a movie adaptation`;
+const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it was published in ${getYear(
+	publicationDate
+)}. The book has ${pagesRange} pages and ${hasMovieAdaptation ? '' : 'do not'} have a movie adaptation`;
 
 console.log(summary);
