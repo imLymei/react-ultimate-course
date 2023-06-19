@@ -137,6 +137,7 @@ function getBook(id) {
 const book = getBook(3);
 
 // Desestruturando um objeto
+
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
 
 // const title = book.title
@@ -146,6 +147,7 @@ console.log(title);
 console.log(author);
 
 // Desestruturando uma array e Rest operator
+
 const [primaryGenre, secondaryGenre, ...othersGenres] = genres;
 
 // const primaryGenre = genres[0];
@@ -156,6 +158,7 @@ console.log(secondaryGenre);
 console.log(othersGenres);
 
 // Desestruturando uma array com Spread operator
+
 const newGenres = [...genres, 'epic fantasy'];
 
 console.log(newGenres);
@@ -171,21 +174,25 @@ const updatedBook = {
 console.log(updatedBook);
 
 //Ternaries operator
+
 const pagesRange = pages > 1000 ? 'over a thousand' : 'less than a thousand';
 
 console.log(pagesRange);
 
 //Arrow function
+
 const getYear = (date) => date.split('-')[0];
 
 //String literal
+
 const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it was published in ${getYear(
 	publicationDate
 )}. The book has ${pagesRange} pages and ${hasMovieAdaptation ? '' : 'do not'} have a movie adaptation`;
 
 console.log(summary);
 
-//Short-circuiting and Logical operators
+//Short-circuiting e Operadores Lógicos
+
 console.log(true && 'A string');
 console.log(false && 'A string');
 console.log(0 && 'A string');
@@ -198,7 +205,7 @@ console.log(true ?? 'A string');
 console.log(false ?? 'A string');
 console.log(0 ?? 'A string');
 
-//falsy: 0, '', null, undefined
+//falsos: 0, '', null, undefined
 console.log('a' && 'b');
 console.log('' && 'b');
 console.log(0 && 'b');
@@ -217,6 +224,7 @@ const count = book.reviews.librarything?.reviewsCount ?? 'No data';
 console.log(count);
 
 //Optional chaining
+
 function getTotalReviewCount(book) {
 	const goodReads = book.reviews.goodreads.reviewsCount;
 	const librarything = book.reviews.librarything?.reviewsCount ?? 0;
@@ -225,3 +233,10 @@ function getTotalReviewCount(book) {
 }
 
 console.log(getTotalReviewCount(book));
+
+//Método Map
+
+const books = getBooks();
+
+const tempArray = [1, 2, 3, 4, 5].map((number) => number * 2);
+console.log(tempArray);
