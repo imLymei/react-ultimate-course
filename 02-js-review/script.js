@@ -240,3 +240,13 @@ const books = getBooks();
 
 const tempArray = [1, 2, 3, 4, 5].map((number) => number * 2);
 console.log(tempArray);
+
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+const essentialData = books.map((book) => ({
+	title: book.title,
+	author: book.author,
+	reviewsCount: getTotalReviewCount(book),
+}));
+console.log(essentialData);
