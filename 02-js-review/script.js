@@ -257,3 +257,7 @@ console.log(longBooks);
 
 const adventureBooks = books.filter((book) => book.genres.includes('adventure')).map((book) => book.title);
 console.log(adventureBooks);
+
+//Método Reduce
+const pagesAllBooks = books.reduce((total, book) => total + book.pages, 0);
+console.log(pagesAllBooks);
