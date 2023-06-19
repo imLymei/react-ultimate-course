@@ -134,7 +134,7 @@ function getBook(id) {
 
 //-----
 
-const book = getBook(1);
+const book = getBook(2);
 
 // Desestruturando um objeto
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
@@ -184,3 +184,34 @@ const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGen
 )}. The book has ${pagesRange} pages and ${hasMovieAdaptation ? '' : 'do not'} have a movie adaptation`;
 
 console.log(summary);
+
+//Short-circuiting and Logical operators
+console.log(true && 'A string');
+console.log(false && 'A string');
+console.log(0 && 'A string');
+
+console.log(true || 'A string');
+console.log(false || 'A string');
+console.log(0 || 'A string');
+
+console.log(true ?? 'A string');
+console.log(false ?? 'A string');
+console.log(0 ?? 'A string');
+
+//falsy: 0, '', null, undefined
+console.log('a' && 'b');
+console.log('' && 'b');
+console.log(0 && 'b');
+console.log(null && 'b');
+console.log(undefined && 'b');
+
+console.log(hasMovieAdaptation && 'This book has a movie adaptation');
+
+const spanishTranslation = book.translations.spanish || 'Not Translated';
+console.log(spanishTranslation);
+
+const countWrong = book.reviews.librarything.reviewsCount || 'No data';
+console.log(countWrong);
+
+const count = book.reviews.librarything.reviewsCount ?? 'No data';
+console.log(count);
