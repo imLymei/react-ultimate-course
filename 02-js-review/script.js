@@ -137,7 +137,7 @@ function getBook(id) {
 const book = getBook(1);
 
 // Desestruturando um objeto
-const { title, author, pages, publicationDate, genres } = book;
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
 
 // const title = book.title
 // const author = book.author
@@ -170,8 +170,14 @@ const updatedBook = {
 
 console.log(updatedBook);
 
-const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it's ${pages} pages long published in ${
+//Ternaries operator
+const pagesRange = pages > 1000 ? 'over a thousand' : 'less than a thousand';
+
+console.log(pagesRange);
+
+//String literal
+const summary = `${title} is a book of genres ${primaryGenre} and ${secondaryGenre}, and it was published in ${
 	publicationDate.split('-')[0]
-}`;
+}. The book has ${pagesRange} pages and ${hasMovieAdaptation ? '' : 'do not'} have a movie adaptation`;
 
 console.log(summary);
