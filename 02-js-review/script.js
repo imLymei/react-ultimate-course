@@ -134,7 +134,7 @@ function getBook(id) {
 
 //-----
 
-const book = getBook(2);
+const book = getBook(3);
 
 // Desestruturando um objeto
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
@@ -210,8 +210,18 @@ console.log(hasMovieAdaptation && 'This book has a movie adaptation');
 const spanishTranslation = book.translations.spanish || 'Not Translated';
 console.log(spanishTranslation);
 
-const countWrong = book.reviews.librarything.reviewsCount || 'No data';
+const countWrong = book.reviews.librarything?.reviewsCount || 'No data';
 console.log(countWrong);
 
-const count = book.reviews.librarything.reviewsCount ?? 'No data';
+const count = book.reviews.librarything?.reviewsCount ?? 'No data';
 console.log(count);
+
+//Optional chaining
+function getTotalReviewCount(book) {
+	const goodReads = book.reviews.goodreads.reviewsCount;
+	const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+
+	return goodReads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
