@@ -277,3 +277,17 @@ const sortedBooks = books
 	.sort((a, b) => a.pages - b.pages);
 
 console.log(sortedBooks);
+
+//Working with Immutable arrays
+const newBook = { id: 6, title: 'Harry Potter and the Chamber of Secrets', author: 'J. K. Rowling' };
+
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id != 3);
+console.log(booksAfterDelete);
+
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+	book.id == newBook.id ? { ...book, author: 'me', pages: 1023 } : book
+);
+console.log(booksAfterUpdate);
