@@ -81,7 +81,18 @@ function Menu() {
 }
 function Footer() {
 	// return React.createElement('footer', null, "we're currently open!"); React without JSX
-	return <footer>{new Date().toLocaleDateString()} we're currently open!</footer>;
+	const actualHour = new Date().getHours();
+	const actualDate = new Date().toLocaleDateString();
+
+	const openHour = 12;
+	const closeHour = 22;
+	const isOpen = actualHour >= openHour && closeHour > actualHour;
+
+	return (
+		<footer>
+			{actualDate} we're currently {isOpen ? 'open' : 'close'}!
+		</footer>
+	);
 }
 
 function Pizza() {
