@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 const pizzaData = [
 	{
@@ -48,11 +49,11 @@ const pizzaData = [
 
 function App() {
 	return (
-		<main>
+		<div className='container'>
 			<Header />
 			<Menu />
 			<Footer />
-		</main>
+		</div>
 	);
 }
 
@@ -66,31 +67,41 @@ root.render(
 );
 
 function Header() {
-	return <h1>Fast React Pizza Co.</h1>;
+	// const style = { color: 'red', fontSize: '48px', textTransform: 'uppercase' };
+	const style = {};
+
+	return (
+		<header className='header'>
+			<h1 style={style}>Fast React Pizza Co.</h1>
+		</header>
+	);
 }
 function Menu() {
 	return (
-		<div>
+		<main className='menu'>
 			<h2>Our Menu</h2>
 			<Pizza />
 			<Pizza />
 			<Pizza />
 			<Pizza />
-		</div>
+		</main>
 	);
 }
 function Footer() {
+	const date = new Date();
+
 	// return React.createElement('footer', null, "we're currently open!"); React without JSX
-	const actualHour = new Date().getHours();
-	const actualDate = new Date().toLocaleDateString();
+	const actualHour = date.getHours();
+	const actualHours = `${actualHour}:${date.getMinutes()}`;
+	const actualDate = date.toLocaleDateString();
 
 	const openHour = 12;
 	const closeHour = 22;
 	const isOpen = actualHour >= openHour && closeHour > actualHour;
 
 	return (
-		<footer>
-			{actualDate} we're currently {isOpen ? 'open' : 'close'}!
+		<footer className='footer'>
+			{actualDate} - {actualHours} we're currently {isOpen ? 'open' : 'close'}!
 		</footer>
 	);
 }
@@ -99,7 +110,7 @@ function Pizza() {
 	return (
 		<div>
 			<img src='pizzas/spinaci.jpg' alt={pizzaData[2].name} />
-			<h2>{pizzaData[2].name}</h2>
+			<h3>{pizzaData[2].name}</h3>
 			<p>{pizzaData[2].ingredients}</p>
 		</div>
 	);
