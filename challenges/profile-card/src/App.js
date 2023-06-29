@@ -30,7 +30,7 @@ function App() {
 function Card({ user }) {
 	return (
 		<div className='card'>
-			<img src={user.imageLink} alt={user.name} className='image' />
+			<img draggable={false} src={user.imageLink} alt={user.name} className='image' />
 			<div className='info'>
 				<Info user={user} />
 				<SkillList tags={user.tags} />
