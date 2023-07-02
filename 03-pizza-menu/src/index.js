@@ -80,25 +80,25 @@ function Menu() {
 	return (
 		<main className='menu'>
 			<h2>Our Menu</h2>
-			<Pizza
-				name={pizzaData[2].name}
-				image={pizzaData[2].photoName}
-				ingredients={pizzaData[2].ingredients}
-				price={pizzaData[2].price}
-				isSoldOut={pizzaData[2].soldOut}
-			/>
+			<ul className='pizzas'>
+				{pizzaData.map((pizza, index) => (
+					<Pizza key={index} pizzaObject={pizza} />
+				))}
+			</ul>
 		</main>
 	);
 }
 
-function Pizza({ name, image, ingredients, price, isSoldOut }) {
+function Pizza({ pizzaObject }) {
 	return (
-		<div className='pizza'>
-			<img src={image} alt={`${name}`} />
-			<h3>{name}</h3>
-			<p>{ingredients}</p>
-			<span>${price}</span>
-		</div>
+		<li className='pizza'>
+			<img src={pizzaObject.photoName} alt={`${pizzaObject.name}`} />
+			<div>
+				<h3>{pizzaObject.name}</h3>
+				<p>{pizzaObject.ingredients}</p>
+				<span>${pizzaObject.price}</span>
+			</div>
+		</li>
 	);
 }
 
@@ -116,7 +116,7 @@ function Footer() {
 
 	return (
 		<footer className='footer'>
-			{actualDate} - {actualHours} we're currently {isOpen ? 'open' : 'close'}!
+			{actualHours} - {actualDate} we're currently {isOpen ? 'open' : 'close'}!
 		</footer>
 	);
 }
