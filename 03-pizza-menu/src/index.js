@@ -77,14 +77,19 @@ function Header() {
 	);
 }
 function Menu() {
+	const pizzas = [];
+	const numPizzas = pizzas.length;
+
 	return (
 		<main className='menu'>
 			<h2>Our Menu</h2>
-			<ul className='pizzas'>
-				{pizzaData.map((pizza, index) => (
-					<Pizza key={index} pizzaObject={pizza} />
-				))}
-			</ul>
+			{numPizzas > 0 && (
+				<ul className='pizzas'>
+					{pizzas.map((pizza, index) => (
+						<Pizza key={index} pizzaObject={pizza} />
+					))}
+				</ul>
+			)}
 		</main>
 	);
 }
@@ -106,17 +111,26 @@ function Footer() {
 	const date = new Date();
 
 	// return React.createElement('footer', null, "we're currently open!"); React without JSX
-	const actualHour = date.getHours();
-	const actualHours = `${actualHour}:${date.getMinutes()}`;
+	const actualHour = date.getHours().toString().padStart(2, '0');
+	const actualHours = `${actualHour}:${date.getMinutes().toString().padStart(2, '0')}`;
 	const actualDate = date.toLocaleDateString();
 
 	const openHour = 12;
 	const closeHour = 22;
 	const isOpen = actualHour >= openHour && closeHour > actualHour;
 
+	const openText = `open until ${closeHour}:00. Come visit us or order online`;
+	const closeText = `close. We open at ${openHour}:00.`;
+
 	return (
 		<footer className='footer'>
-			{actualHours} - {actualDate} we're currently {isOpen ? 'open' : 'close'}!
+			<div className='order'>
+				<p>
+					{actualHours} - {actualDate}
+				</p>
+				<p>we're currently {isOpen ? openText : closeText}</p>
+				<button className='btn'>order</button>
+			</div>
 		</footer>
 	);
 }
