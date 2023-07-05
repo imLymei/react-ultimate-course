@@ -7,15 +7,15 @@ function App() {
 	const description =
 		'Eu sou Felipe Cardoso, um programador de 19 anos apaixonado por React e Next.js. Adoro transformar minhas ideias em projetos concretos, explorando minha habilidade e criatividade para programar tudo o que posso imaginar';
 	const tags = [
-		'React',
-		'Next.js',
-		'Javascript',
-		'Typescript',
-		'HTML & CSS',
-		'Python',
-		'SQL',
-		'AWS',
-		'Git & Github',
+		{ name: 'React', level: 'intermediate' },
+		{ name: 'Next.js', level: 'intermediate' },
+		{ name: 'Javascript', level: 'intermediate' },
+		{ name: 'Typescript', level: 'intermediate' },
+		{ name: 'HTML & CSS', level: 'expert' },
+		{ name: 'Python', level: 'intermediate' },
+		{ name: 'SQL', level: 'intermediate' },
+		{ name: 'AWS', level: 'beginner' },
+		{ name: 'Git & Github', level: 'expert' },
 	];
 
 	const user = { name: name, imageLink: imageLink, description: description, tags: tags };
@@ -50,16 +50,19 @@ function Info({ user }) {
 
 function SkillList({ tags }) {
 	const colors = ['red', 'orange', 'dark-blue', 'blue', 'yellow', 'green'];
-
 	return (
 		<ul className='tag-holder'>
 			{tags.map((tag, index) => (
 				<li key={index} className={`tag ${colors[index % colors.length]}`}>
-					{tag}
+					{tag.name} <LevelTag level={tag.level} />
 				</li>
 			))}
 		</ul>
 	);
+}
+
+function LevelTag({ level }) {
+	return level === 'beginner' ? '😊' : level === 'intermediate' ? '😀' : '😁';
 }
 
 export default App;
