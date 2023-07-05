@@ -124,19 +124,33 @@ function Footer() {
 	const closeHour = 22;
 	const isOpen = actualHour >= openHour && closeHour > actualHour;
 
-	const openText = `open until ${closeHour}:00. Come visit us or order online`;
-	const closeText = `close. We're happy to welcome you between ${openHour}:00 and ${closeHour}:00.`;
+	const openText = `we're currently open until ${closeHour}:00. Come visit us or order online`;
+	const closeText = `we're currently close. We're happy to welcome you between ${openHour}:00 and ${closeHour}:00.`;
 
 	return (
 		<footer className='footer'>
 			<div className='order'>
-				<p>
-					{actualHours} - {actualDate}
-				</p>
-				<p>we're currently {isOpen ? openText : closeText}</p>
+				<OrderText
+					actualDate={actualDate}
+					actualHours={actualHours}
+					closeText={closeText}
+					isOpen={isOpen}
+					openText={openText}
+				/>
 				<button className='btn'>order</button>
 			</div>
 		</footer>
+	);
+}
+
+function OrderText({ actualHours, actualDate, isOpen, openText, closeText }) {
+	return (
+		<>
+			<p>
+				{actualHours} - {actualDate}
+			</p>
+			<p>{isOpen ? openText : closeText}</p>
+		</>
 	);
 }
 
