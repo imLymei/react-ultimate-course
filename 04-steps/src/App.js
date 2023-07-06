@@ -4,7 +4,23 @@ const messages = ['Learn React ⚛️', 'Apply for jobs 💼', 'Invest your new 
 
 export default function App() {
 	const [step, setStep] = useState(1);
+	const [isOpen, setIsOpen] = useState(true);
 
+	function handleIsOpen() {
+		setIsOpen(!isOpen);
+	}
+
+	return (
+		<>
+			<button className='close' onClick={handleIsOpen}>
+				&times;
+			</button>
+			{isOpen && <StepsForm step={step} setStep={setStep} />}
+		</>
+	);
+}
+
+function StepsForm({ step, setStep }) {
 	function handlePrevious() {
 		if (step > 1) setStep((step) => step - 1);
 	}
