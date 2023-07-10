@@ -27,13 +27,18 @@ function App() {
 		<div className='app'>
 			<div className='controls-container'>
 				<div className='buttons-container'>
-					<button onClick={() => handleStepChange(false)}>-</button>
-					<p>step: {step}</p>
-					<button onClick={handleStepChange}>+</button>
+					<p>{step}</p>
+					<input
+						type='range'
+						min={1}
+						max={100}
+						value={step}
+						onChange={(event) => setStep(parseInt(event.target.value))}
+					/>
 				</div>
 				<div className='buttons-container'>
 					<button onClick={() => handleCountChange(false)}>-</button>
-					<p>count: {count}</p>
+					<input value={count} onChange={(event) => setCount(parseInt(event.target.value))} />
 					<button onClick={handleCountChange}>+</button>
 				</div>
 			</div>
