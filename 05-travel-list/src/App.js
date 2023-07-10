@@ -82,7 +82,7 @@ function PackingList({ itemsList, setItemsList }) {
 	}
 
 	function deleteItem(item) {
-		setItemsList((list) => list.filter((listItem) => listItem.id != item.id));
+		setItemsList((list) => list.filter((listItem) => listItem.id !== item.id));
 	}
 
 	return (
