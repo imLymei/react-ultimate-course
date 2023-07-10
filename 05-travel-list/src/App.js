@@ -1,9 +1,13 @@
+import { useState } from 'react';
+
 export default function App() {
+	const [itemsList, setItemsList] = useState([]);
+
 	return (
 		<div className='app'>
 			<Logo />
-			<Form />
-			<PackingList />
+			<Form setItemsList={setItemsList} />
+			<PackingList itemsList={itemsList} setItemsList={setItemsList} />
 			<Stats />
 		</div>
 	);
@@ -13,39 +17,93 @@ function Logo() {
 	return <h1>🌴 Far Away 💼</h1>;
 }
 
-function Form() {
+function Form({ setItemsList }) {
+	const [description, setDescription] = useState('');
+	const [quantity, setQuantity] = useState(1);
+
+	function clearInputs() {
+		setDescription('');
+		setQuantity(1);
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		if (!description) return;
+
+		const newItem = {
+			id: Date.now(),
+			quantity,
+			description,
+			isChecked: false,
+		};
+
+		setItemsList((list) => [...list, newItem]);
+
+		clearInputs();
+	}
+
 	return (
-		<div className='add-form'>
+		<form className='add-form' onSubmit={handleSubmit}>
 			<h3>What do you need for you ✨tripe✨</h3>
-		</div>
+			<select value={quantity} onChange={(event) => setQuantity(parseInt(event.target.value))}>
+				{Array.from({ length: 20 }, (value, index) => index + 1).map((number) => (
+					<option key={`${number} items`} value={number}>
+						{number}
+					</option>
+				))}
+			</select>
+			<input
+				placeholder='item...'
+				value={description}
+				onChange={(event) => setDescription(event.target.value)}
+			/>
+			<button type='submit'>ADD</button>
+		</form>
 	);
 }
 
-const items = [
-	{ id: 0, quantity: 2, description: 'toothbrush', isChecked: true },
-	{ id: 1, quantity: 2, description: 't-shirt', isChecked: false },
-];
+function PackingList({ itemsList, setItemsList }) {
+	function checkItem(item) {
+		setItemsList((list) =>
+			list.map((listItem) => {
+				if (listItem.id !== item.id) return listItem;
 
-function PackingList() {
+				const newItem = {
+					id: item.id,
+					quantity: item.quantity,
+					description: item.description,
+					isChecked: !item.isChecked,
+				};
+
+				return newItem;
+			})
+		);
+	}
+
+	function deleteItem(item) {
+		setItemsList((list) => list.filter((listItem) => listItem.id != item.id));
+	}
+
 	return (
 		<div className='list'>
 			<ul>
-				{items.map((item, index) => (
-					<ListItem key={index} item={item} />
+				{itemsList.map((item, index) => (
+					<ListItem key={index} item={item} checkItem={checkItem} deleteItem={deleteItem} />
 				))}
 			</ul>
 		</div>
 	);
 }
 
-function ListItem({ item }) {
+function ListItem({ item, checkItem, deleteItem }) {
 	return (
 		<li>
-			<input type='checkbox' />
+			<input type='checkbox' onChange={(_) => checkItem(item)} />
 			<p style={item.isChecked ? { textDecoration: 'line-through' } : {}}>
 				{item.quantity} {item.description}
 			</p>
-			<button>❌</button>
+			<button onClick={() => deleteItem(item)}>❌</button>
 		</li>
 	);
 }
