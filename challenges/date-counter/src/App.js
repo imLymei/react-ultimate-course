@@ -39,10 +39,11 @@ function App() {
 			</div>
 			<p>
 				{isToday
-					? `Today is ${date.toUTCString()}`
+					? 'Today is'
 					: isBeforeToday
-					? `${Math.abs(count)} days ago was ${date.toUTCString()}`
-					: `${count} days from today is ${date.toUTCString()}`}
+					? `${Math.abs(count)} days ago was`
+					: `${count} days from today is`}{' '}
+				{date.toDateString()}
 			</p>
 		</div>
 	);
