@@ -10,10 +10,6 @@ function App() {
 	const isToday = count === 0;
 	const isBeforeToday = count < 0;
 
-	function handleStepChange(isPositive = true) {
-		setStep((step) => (isPositive ? step + 1 : step - 1));
-	}
-
 	function handleCountChange(isPositive = true) {
 		setCount((count) => {
 			const today = date.getTime();
@@ -21,6 +17,11 @@ function App() {
 			setDate((date) => new Date(isPositive ? today + day * step : today - day * step));
 			return isPositive ? count + 1 * step : count - 1 * step;
 		});
+	}
+
+	function resetChanges() {
+		setCount(0);
+		setStep(1);
 	}
 
 	return (
@@ -50,6 +51,11 @@ function App() {
 					: `${count} days from today is`}{' '}
 				{date.toDateString()}
 			</p>
+			{(count !== 0 || step !== 1) && (
+				<div className='button-container'>
+					<button onClick={resetChanges}>Reset</button>
+				</div>
+			)}
 		</div>
 	);
 }
