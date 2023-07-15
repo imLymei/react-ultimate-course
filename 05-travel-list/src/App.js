@@ -66,18 +66,7 @@ function Form({ setItemsList }) {
 function PackingList({ itemsList, setItemsList }) {
 	function checkItem(item) {
 		setItemsList((list) =>
-			list.map((listItem) => {
-				if (listItem.id !== item.id) return listItem;
-
-				const newItem = {
-					id: item.id,
-					quantity: item.quantity,
-					description: item.description,
-					isChecked: !item.isChecked,
-				};
-
-				return newItem;
-			})
+			list.map((listItem) => (listItem.id !== item.id ? listItem : { ...item, isChecked: !item.isChecked }))
 		);
 	}
 
